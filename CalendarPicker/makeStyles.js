@@ -22,13 +22,17 @@ export function makeStyles(params) {
     containerHeight,
     scaleFactor,
     selectedDayColor,
+    selectedRangeDayBgColor,
     selectedDayTextColor,
     todayBackgroundColor,
+    weekTextColor,
     dayShape
   } = params;
   const scaler = Math.min(containerWidth, containerHeight) / scaleFactor;
   const SELECTED_BG_COLOR = selectedDayColor ? selectedDayColor : DEFAULT_SELECTED_BACKGROUND_COLOR;
+  const SELECTED_RANGE_BG_COLOR = selectedRangeDayBgColor ? selectedRangeDayBgColor : DEFAULT_SELECTED_BACKGROUND_COLOR;
   const SELECTED_TEXT_COLOR = selectedDayTextColor ? selectedDayTextColor : DEFAULT_SELECTED_TEXT_COLOR;
+  const WEEK_TEXT_COLOR = weekTextColor ? weekTextColor : DEFAULT_SELECTED_TEXT_COLOR;
   const TODAY_BG_COLOR = todayBackgroundColor ? todayBackgroundColor : DEFAULT_TODAY_BACKGROUND_COLOR;
 
   return {
@@ -49,7 +53,7 @@ export function makeStyles(params) {
     },
 
     dayLabel: {
-      fontSize: 14*scaler,
+      fontSize: 16*scaler,
       color: '#000',
       alignSelf: 'center'
     },
@@ -60,14 +64,8 @@ export function makeStyles(params) {
 
     dayLabelsWrapper: {
       flexDirection: 'row',
-      borderBottomWidth: 1,
-      borderTopWidth: 1,
-      paddingTop: 10*scaler,
-      paddingBottom: 10*scaler,
       alignSelf: 'center',
       justifyContent: 'center',
-      backgroundColor: 'rgba(0,0,0,0.0)',
-      borderColor: 'rgba(0,0,0,0.2)'
     },
 
     daysWrapper: {
@@ -76,16 +74,16 @@ export function makeStyles(params) {
     },
 
     dayLabels: {
-      width: 50*scaler,
-      fontSize: 12*scaler,
-      color: '#000',
-      textAlign: 'center'
+      fontSize: 14*scaler,
+      color: WEEK_TEXT_COLOR,
+      textAlign: 'center',
+      fontWeight: '400',
     },
 
     selectedDay: {
-      width: 30*scaler,
-      height:30*scaler,
-      borderRadius: getBorderRadiusByShape(scaler, dayShape),
+      width: 36*scaler,
+      height: 36*scaler,
+      borderRadius: 18*scaler,
       alignSelf: 'center',
       justifyContent: 'center'
     },
@@ -95,10 +93,10 @@ export function makeStyles(params) {
     },
 
     selectedToday: {
-      width: 30*scaler,
-      height:30*scaler,
+      width: 36*scaler,
+      height: 36*scaler,
       backgroundColor: TODAY_BG_COLOR,
-      borderRadius: getBorderRadiusByShape(scaler, dayShape),
+      borderRadius: 18*scaler,
       alignSelf: 'center',
       justifyContent: 'center'
     },
@@ -106,35 +104,36 @@ export function makeStyles(params) {
     dayWrapper: {
       alignItems: 'center',
       justifyContent: 'center',
-      width: 50*scaler,
-      height: 40*scaler,
-      backgroundColor: 'rgba(0,0,0,0.0)'
+      width: 44*scaler,
+      height: 44*scaler,
+      marginVertical: 4*scaler,
     },
 
     startDayWrapper: {
-      width: 50*scaler,
-      height: 30*scaler,
-      borderTopLeftRadius: 20*scaler,
-      borderBottomLeftRadius: 20*scaler,
+      width: 36*scaler,
+      height: 36*scaler,
+      borderRadius: 18*scaler,
+      color: '#fff',
       backgroundColor: SELECTED_BG_COLOR,
-      alignSelf: 'center',
-      justifyContent: 'center'
+      alignSelf: 'flex-start',
+      justifyContent: 'center',
     },
 
     endDayWrapper: {
-      width: 50*scaler,
-      height: 30*scaler,
-      borderTopRightRadius: 20*scaler,
-      borderBottomRightRadius: 20*scaler,
+      width: 36*scaler,
+      height: 36*scaler,
+      borderRadius: 18*scaler,
+      color: '#fff',
       backgroundColor: SELECTED_BG_COLOR,
-      alignSelf: 'center',
-      justifyContent: 'center'
+      alignSelf: 'flex-end',
+      justifyContent: 'center',
     },
 
     inRangeDay: {
-      width: 50*scaler,
-      height: 30*scaler,
-      backgroundColor: SELECTED_BG_COLOR,
+      width: 44*scaler,
+      height: 36*scaler,
+      color: '#000',
+      backgroundColor: SELECTED_RANGE_BG_COLOR,
       alignSelf: 'center',
       justifyContent: 'center'
     },
@@ -144,27 +143,20 @@ export function makeStyles(params) {
       alignItems: 'center',
       alignSelf: 'center',
       justifyContent: 'space-between',
-      width: containerWidth,
-      padding: 5*scaler,
-      paddingBottom: 3*scaler,
-      marginBottom: 10*scaler,
-      backgroundColor: 'rgba(0,0,0,0.0)'
+      height: 44,
+      width: '100%',
     },
 
     monthYearHeaderWrapper: {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
-      paddingHorizontal: 3*scaler,
     },
 
     previousContainer: {
-      marginLeft: 10*scaler,
     },
 
     nextContainer: {
-      marginRight: 10*scaler,
-      alignItems: 'flex-end',
     },
 
     navButtonText: {
@@ -198,6 +190,7 @@ export function makeStyles(params) {
       color: '#000',
       textAlign: 'right',
       marginHorizontal: 3*scaler,
+      fontWeight: '500',
     },
 
     monthButton: {
@@ -212,7 +205,8 @@ export function makeStyles(params) {
       flex: 1,
       fontSize: 16*scaler,
       color: '#000',
-      textAlign: 'center'
+      textAlign: 'center',
+      fontWeight: '500',
     },
 
     monthContainer: {
@@ -223,7 +217,7 @@ export function makeStyles(params) {
     monthText: {
       fontSize: 14*scaler,
       color: '#000',
-      alignSelf: 'center'
+      alignSelf: 'center',
     },
 
     monthsWrapper: {
@@ -241,6 +235,7 @@ export function makeStyles(params) {
       fontSize: 16*scaler,
       color: '#000',
       marginHorizontal: 3*scaler,
+      fontWeight: '500',
     },
 
     yearContainer: {
@@ -249,16 +244,16 @@ export function makeStyles(params) {
     },
 
     yearText: {
-      fontSize: 14*scaler,
+      fontSize: 16*scaler,
       color: '#000',
-      alignSelf: 'center'
+      alignSelf: 'center',
     },
 
     yearsHeaderText: {
       fontSize: 16*scaler,
       color: '#000',
-      width: 180*scaler,
-      textAlign: 'center'
+      textAlign: 'center',
+      fontWeight: '500',
     },
 
     yearsWrapper: {
@@ -271,6 +266,37 @@ export function makeStyles(params) {
       flexDirection: 'row',
       padding: 20*scaler,
     },
+
+    paddingRangeStart: {
+      marginLeft: 4*scaler,
+    },
+
+    paddingRangeEnd: {
+      marginRight: 4*scaler,
+    },
+
+    warpperRangeStart: {
+      height: 36*scaler,
+      width: 40*scaler,
+      borderTopLeftRadius: 18*scaler,
+      borderBottomLeftRadius: 18*scaler,
+      backgroundColor: SELECTED_RANGE_BG_COLOR,
+    },
+
+    warpperRangeEnd: {
+      height: 36*scaler,
+      width: 40*scaler,
+      borderTopRightRadius: 18*scaler,
+      borderBottomRightRadius: 18*scaler,
+      backgroundColor: SELECTED_RANGE_BG_COLOR,
+    },
+
+    weekWrapper: {
+      width: 44*scaler,
+      height: 44*scaler,
+      alignItems: 'center',
+      justifyContent: 'center',
+    }
 
   };
 }

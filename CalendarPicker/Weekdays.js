@@ -16,6 +16,7 @@ export default function Weekdays(props) {
     textStyle,
     dayLabelsWrapper,
     customDayHeaderStyles,
+    weekWrapper,
   } = props;
 
   // dayOfWeekNums: ISO week day numbers
@@ -36,7 +37,7 @@ export default function Weekdays(props) {
           dayOfWeekTextStyle.push(customDayOfWeekStyles.textStyle);
         }
         return (
-          <View style={customDayOfWeekStyles.style} key={key}>
+          <View style={[customDayOfWeekStyles.style,styles.weekWrapper]} key={key}>
             <Text style={dayOfWeekTextStyle}>
               {day}
             </Text>

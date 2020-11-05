@@ -125,6 +125,9 @@ export default class CalendarPicker extends Component {
       selectedDayColor,
       selectedDayTextColor,
       todayBackgroundColor,
+      selectedRangeDayBgColor,
+      weekWrapper,
+      weekTextColor,
       width,
       height,
       dayShape
@@ -141,6 +144,9 @@ export default class CalendarPicker extends Component {
         selectedDayColor,
         selectedDayTextColor,
         todayBackgroundColor,
+        selectedRangeDayBgColor,
+        weekWrapper,
+        weekTextColor,
         dayShape
       })
     };
@@ -381,6 +387,8 @@ export default class CalendarPicker extends Component {
       selectedRangeStyle: this.props.selectedRangeStyle,
       selectedRangeEndStyle: this.props.selectedRangeEndStyle,
       customDatesStyles: this.props.customDatesStyles,
+      selectedRangeDayBgColor: this.props.selectedRangeDayBgColor,
+      weekTextColor: this.props.weekTextColor,
     };
   }
 
@@ -468,6 +476,7 @@ export default class CalendarPicker extends Component {
       onMonthChange,
       scrollable,
       horizontal,
+      dividerColor,
     } = this.props;
 
     let content;
@@ -536,6 +545,7 @@ export default class CalendarPicker extends Component {
             headingLevel={headingLevel}
             monthYearHeaderWrapperStyle={monthYearHeaderWrapperStyle}
           />
+          <View style={{height: 1,width: '100%',backgroundColor: dividerColor}}></View>
           <Weekdays
             styles={styles}
             startFromMonday={startFromMonday}
